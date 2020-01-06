@@ -1,0 +1,78 @@
+{
+	"name": "typescript-server-scaffold",
+	"version": "1.0.0",
+	"main": "dist/index.js",
+	"repository": "https://selva_g@bitbucket.org/skittergit/typescript-server-scaffold.git",
+	"author": "selva.g <selva.g@skitter.in>",
+	"license": "MIT",
+	"engines": {
+		"node": ">= 8.0.0",
+		"yarn": ">= 1.7.0",
+		"npm": ">= 5.0.0"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.6",
+		"@types/express": "^4.17.0",
+		"@types/jest": "^24.0.15",
+		"@types/morgan": "^1.7.37",
+		"@types/node": "^12.0.10",
+		"cz-customizable": "^6.2.0",
+		"husky": "^3.0.0",
+		"lint-staged": ">=8",
+		"nodemon": "^1.19.1",
+		"prettier": "^1.18.2",
+		"ts-jest": "^24.0.2",
+		"ts-node": "^8.3.0",
+		"typescript": "3.5.2"
+	},
+	"dependencies": {
+		"@skitter/cognidesk-auth-app-internal-api": "^0.1.4",
+		"@skitter/cognidesk-jwt": "0.0.12",
+		"@skitter/cognidesk_notification_grpc_interface": "^1.3.2",
+		"@types/nodemailer": "^6.2.1",
+		"@types/ramda": "^0.26.16",
+		"axios": "^0.19.0",
+		"cors": "^2.8.5",
+		"date-fns": "^1.30.1",
+		"dotenv-safe": "^6.1.0",
+		"express": "^4.17.1",
+		"fp-ts": "^2.0.2",
+		"io-ts": "^2.0.0",
+		"io-ts-types": "^0.5.1",
+		"jade": "^1.11.0",
+		"jest": "^24.8.0",
+		"morgan": "^1.9.1",
+		"mysql": "^2.17.1",
+		"nodemailer": "^6.3.0",
+		"pb-util": "^0.1.2",
+		"ramda": "^0.26.1",
+		"reflect-metadata": "^0.1.13",
+		"rxjs-grpc": "^0.2.4",
+		"typeorm": "^0.2.18",
+		"uuid": "^3.3.2"
+	},
+	"scripts": {
+		"start": "npm run start:prod",
+		"start:dev": "ts-node src/index.ts",
+		"start:watch": "nodemon --watch src --ext ts --exec npm run start:dev",
+		"start:prod": "node dist/index.js",
+		"build": "tsc",
+		"build:clean": "tsc",
+		"commit": "./node_modules/cz-customizable/standalone.js",
+		"format": "prettier --write \"./**/*.ts\"",
+		"build:watch": "tsc -w",
+		"start:dev:watch": "nodemon --watch dist --ext js --exec npm run start:prod",
+		"format:watch": "nodemon --watch src --ext ts --exec npm run format"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.ts": [
+			"npm run format",
+			"git add"
+		]
+	}
+}
